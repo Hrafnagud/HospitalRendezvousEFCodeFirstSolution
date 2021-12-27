@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace HopitalRendezvousEFCodeFirstEntities
 {
+    [Table("Doctors")]
     public class Doctor : Person, IPaid
     {
         //Data Annotations  (after entity framework package installed)
@@ -16,10 +17,11 @@ namespace HopitalRendezvousEFCodeFirstEntities
         public int DoctorId { get; set; }
 
         [Required(ErrorMessage = "Please enter a doctor name!")]
-        [StringLength(50)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Doctor name must contain at least 2, and utmost 50 character!")]
         [Display(Name = "Doctor Name")]
         public string DoctorName { get; set; }
 
+        [Column(TypeName = "nvarchar")]
         [Required(ErrorMessage = "Please enter a doctor surname!")]
         [StringLength(50)]
         [Display(Name = "Doctor Surname")]
@@ -30,5 +32,7 @@ namespace HopitalRendezvousEFCodeFirstEntities
 
         [Display(Name = "Salary")]
         public decimal Salary { get; set; }
+
+        public virtual List<RendezvousInfo> RendezvousInfoList { get; set; }
     }
 }

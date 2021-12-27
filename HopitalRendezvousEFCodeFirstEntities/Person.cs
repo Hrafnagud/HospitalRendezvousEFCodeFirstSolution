@@ -17,7 +17,7 @@ namespace HopitalRendezvousEFCodeFirstEntities
         public string PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        [EmailAddress]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please enter correct email")]
         public string Email { get; set; }
     }
 }

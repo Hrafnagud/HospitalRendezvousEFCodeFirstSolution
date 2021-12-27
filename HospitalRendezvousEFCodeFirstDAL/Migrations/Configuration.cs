@@ -1,0 +1,25 @@
+﻿namespace HospitalRendezvousEFCodeFirstDAL.Migrations
+{
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<HospitalRendezvousEFCodeFirstDAL.MyContext>
+    {
+        public Configuration()
+        {
+            //If you want this statement to stay false, you need to add migration
+            AutomaticMigrationsEnabled = true;
+            //If you change this statement as true, no need for adding migration (update-database to the console would do th trick!)
+        }
+
+        protected override void Seed(HospitalRendezvousEFCodeFirstDAL.MyContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
+        }
+    }
+}

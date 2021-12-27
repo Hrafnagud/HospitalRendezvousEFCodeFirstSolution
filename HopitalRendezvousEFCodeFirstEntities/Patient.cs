@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace HopitalRendezvousEFCodeFirstEntities
 {
+    [Table("Patients")] //Table names which will be generated, are stated here.
     public class Patient : Person
     {
         [Key]
@@ -23,5 +24,7 @@ namespace HopitalRendezvousEFCodeFirstEntities
         [StringLength(50)]
         [Display(Name = "Patient Surname")]
         public string PatientSurname { get; set; }
+
+        public virtual List<RendezvousInfo> RendezvousInfoList { get; set; }
     }
 }

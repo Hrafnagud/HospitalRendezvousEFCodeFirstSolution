@@ -8,13 +8,20 @@ using System.Threading.Tasks;
 
 namespace HopitalRendezvousEFCodeFirstEntities
 {
+    [Table("RendezvousInformation")]
     public class RendezvousInfo
     {
         [Key]
         [Column(Order = 1)]
-        public int Id{ get; set; }
+        public int RendezvousId{ get; set; }
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
         public DateTime RendezvousDate { get; set; }
+
+        //relation
+        [ForeignKey("DoctorId")]
+        public virtual Doctor Doctor { get; set; }
+        [ForeignKey("PatientId")]
+        public virtual Patient Patient { get; set; }
     }
 }

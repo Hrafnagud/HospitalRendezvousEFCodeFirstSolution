@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace HopitalRendezvousEFCodeFirstEntities
 {
-    class Enums
+    public class Enums
     {
+        public int TheKey{ get; set; }
+        public string TheValue{ get; set; }
     }
     
     public enum Specialties : Byte
     {
+        NoSpecialty,
         Internal,
-        ENT,    //Ear Nose Throat (KBB in turkish)
+        Otorhinolaryngology,    //a medical specialty concerned especially with the ear, nose, and throat and related parts of the head and neck (Turkish correspondence: KBB)
         Ophthalmology,
         Orthopedics,
         Cardiology
