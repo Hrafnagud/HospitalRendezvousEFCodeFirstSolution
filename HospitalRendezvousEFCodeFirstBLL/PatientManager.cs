@@ -25,5 +25,17 @@ namespace HospitalRendezvousEFCodeFirstBLL
                 throw ex;
             }
         }
+
+        public List<Patient> FindPatientByTRID(string TRID) //TRID: Turkish Republic ID
+        {
+            try
+            {
+                return myDbContext.Patients.Where(x => x.TRID.StartsWith(TRID) || x.TRID.EndsWith(TRID)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

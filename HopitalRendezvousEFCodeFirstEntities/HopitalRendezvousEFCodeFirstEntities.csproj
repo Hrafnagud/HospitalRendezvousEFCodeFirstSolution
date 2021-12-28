@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Doctor.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="HourViewModel.cs" />
     <Compile Include="IPaid.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Person.cs" />

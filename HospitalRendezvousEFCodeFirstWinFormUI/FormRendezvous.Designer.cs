@@ -42,7 +42,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.comboBoxService = new System.Windows.Forms.ComboBox();
             this.listBoxDoctors = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerRendezvousDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageRendezvousOperation.SuspendLayout();
@@ -112,7 +112,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             // groupBoxRendezvous
             // 
             this.groupBoxRendezvous.Controls.Add(this.label4);
-            this.groupBoxRendezvous.Controls.Add(this.dateTimePicker1);
+            this.groupBoxRendezvous.Controls.Add(this.dateTimePickerRendezvousDate);
             this.groupBoxRendezvous.Location = new System.Drawing.Point(930, 21);
             this.groupBoxRendezvous.Name = "groupBoxRendezvous";
             this.groupBoxRendezvous.Size = new System.Drawing.Size(764, 443);
@@ -126,6 +126,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.textBoxPatientTRSearch.Name = "textBoxPatientTRSearch";
             this.textBoxPatientTRSearch.Size = new System.Drawing.Size(240, 22);
             this.textBoxPatientTRSearch.TabIndex = 0;
+            this.textBoxPatientTRSearch.TextChanged += new System.EventHandler(this.textBoxPatientTRSearch_TextChanged);
             // 
             // label1
             // 
@@ -144,6 +145,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.listBoxPatients.Name = "listBoxPatients";
             this.listBoxPatients.Size = new System.Drawing.Size(388, 356);
             this.listBoxPatients.TabIndex = 2;
+            this.listBoxPatients.SelectedIndexChanged += new System.EventHandler(this.listBoxPatients_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -161,6 +163,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.comboBoxService.Name = "comboBoxService";
             this.comboBoxService.Size = new System.Drawing.Size(242, 24);
             this.comboBoxService.TabIndex = 4;
+            this.comboBoxService.SelectedIndexChanged += new System.EventHandler(this.comboBoxService_SelectedIndexChanged);
             // 
             // listBoxDoctors
             // 
@@ -170,6 +173,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.listBoxDoctors.Name = "listBoxDoctors";
             this.listBoxDoctors.Size = new System.Drawing.Size(368, 324);
             this.listBoxDoctors.TabIndex = 5;
+            this.listBoxDoctors.SelectedIndexChanged += new System.EventHandler(this.listBoxDoctors_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -180,12 +184,13 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.label3.TabIndex = 6;
             this.label3.Text = "Choose a Doctor:";
             // 
-            // dateTimePicker1
+            // dateTimePickerRendezvousDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(237, 45);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(503, 22);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePickerRendezvousDate.Location = new System.Drawing.Point(237, 45);
+            this.dateTimePickerRendezvousDate.Name = "dateTimePickerRendezvousDate";
+            this.dateTimePickerRendezvousDate.Size = new System.Drawing.Size(503, 22);
+            this.dateTimePickerRendezvousDate.TabIndex = 0;
+            this.dateTimePickerRendezvousDate.ValueChanged += new System.EventHandler(this.dateTimePickerRendezvousDate_ValueChanged);
             // 
             // label4
             // 
@@ -234,6 +239,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private System.Windows.Forms.ListBox listBoxDoctors;
         private System.Windows.Forms.ComboBox comboBoxService;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerRendezvousDate;
     }
 }

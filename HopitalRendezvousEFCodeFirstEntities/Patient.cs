@@ -26,5 +26,10 @@ namespace HopitalRendezvousEFCodeFirstEntities
         public string PatientSurname { get; set; }
 
         public virtual List<RendezvousInfo> RendezvousInfoList { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.TRID} {this.PatientName} {this.PatientSurname}";
+        }
     }
 }

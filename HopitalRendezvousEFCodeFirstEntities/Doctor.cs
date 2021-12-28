@@ -34,5 +34,10 @@ namespace HopitalRendezvousEFCodeFirstEntities
         public decimal Salary { get; set; }
 
         public virtual List<RendezvousInfo> RendezvousInfoList { get; set; }
+
+        public override string ToString()
+        {
+            return $"Dr. {DoctorName} {DoctorSurname}";
+        }
     }
 }

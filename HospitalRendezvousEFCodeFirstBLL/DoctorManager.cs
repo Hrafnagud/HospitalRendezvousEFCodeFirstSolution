@@ -49,5 +49,17 @@ namespace HospitalRendezvousEFCodeFirstBLL
                 throw ex;
             }
         }
+
+        public List<Doctor> BringAllDoctorsBySpecialty(Specialties specialty)
+        {
+            try
+            {
+                return myDBContext.Doctors.Where(x => x.Specialty == specialty).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
