@@ -16,7 +16,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDoctors());
+            Application.Run(new FormHome());
         }
     }
 }
