@@ -55,6 +55,7 @@
     <Compile Include="EnumManager.cs" />
     <Compile Include="PatientManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RendezvousManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HopitalRendezvousEFCodeFirstEntities\HopitalRendezvousEFCodeFirstEntities.csproj">

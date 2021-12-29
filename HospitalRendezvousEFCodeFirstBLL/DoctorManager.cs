@@ -61,5 +61,18 @@ namespace HospitalRendezvousEFCodeFirstBLL
                 throw ex;
             }
         }
+
+        public Doctor FindDoctorById(int id)
+        {
+            try
+            {
+                Doctor doctor = myDBContext.Doctors.FirstOrDefault(x => x.DoctorId == id);
+                return doctor;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

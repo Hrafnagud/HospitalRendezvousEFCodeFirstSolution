@@ -1,7 +1,7 @@
 ﻿
 namespace HospitalRendezvousEFCodeFirstWinFormUI
 {
-    partial class UC_RendezvousHour
+    partial class UC_RendezvousHours
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,10 +33,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.comboBoxHours = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanelRendezvousButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btn4500 = new System.Windows.Forms.Button();
-            this.btn3045 = new System.Windows.Forms.Button();
-            this.btn0015 = new System.Windows.Forms.Button();
-            this.btn1530 = new System.Windows.Forms.Button();
+            this.btn45 = new System.Windows.Forms.Button();
+            this.btn30 = new System.Windows.Forms.Button();
+            this.btn00 = new System.Windows.Forms.Button();
+            this.btn15 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelRendezvousButtons.SuspendLayout();
             this.SuspendLayout();
@@ -78,10 +78,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.tableLayoutPanelRendezvousButtons.ColumnCount = 2;
             this.tableLayoutPanelRendezvousButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelRendezvousButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn4500, 1, 1);
-            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn3045, 0, 1);
-            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn0015, 0, 0);
-            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn1530, 1, 0);
+            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn45, 1, 1);
+            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn30, 0, 1);
+            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn00, 0, 0);
+            this.tableLayoutPanelRendezvousButtons.Controls.Add(this.btn15, 1, 0);
             this.tableLayoutPanelRendezvousButtons.Location = new System.Drawing.Point(13, 106);
             this.tableLayoutPanelRendezvousButtons.Name = "tableLayoutPanelRendezvousButtons";
             this.tableLayoutPanelRendezvousButtons.RowCount = 2;
@@ -90,43 +90,43 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.tableLayoutPanelRendezvousButtons.Size = new System.Drawing.Size(443, 207);
             this.tableLayoutPanelRendezvousButtons.TabIndex = 2;
             // 
-            // btn4500
+            // btn45
             // 
-            this.btn4500.Location = new System.Drawing.Point(224, 105);
-            this.btn4500.Name = "btn4500";
-            this.btn4500.Size = new System.Drawing.Size(216, 99);
-            this.btn4500.TabIndex = 3;
-            this.btn4500.Text = "button4";
-            this.btn4500.UseVisualStyleBackColor = true;
+            this.btn45.Location = new System.Drawing.Point(224, 105);
+            this.btn45.Name = "btn45";
+            this.btn45.Size = new System.Drawing.Size(216, 99);
+            this.btn45.TabIndex = 3;
+            this.btn45.Text = "button4";
+            this.btn45.UseVisualStyleBackColor = true;
             // 
-            // btn3045
+            // btn30
             // 
-            this.btn3045.Location = new System.Drawing.Point(3, 105);
-            this.btn3045.Name = "btn3045";
-            this.btn3045.Size = new System.Drawing.Size(211, 99);
-            this.btn3045.TabIndex = 2;
-            this.btn3045.Text = "button3";
-            this.btn3045.UseVisualStyleBackColor = true;
+            this.btn30.Location = new System.Drawing.Point(3, 105);
+            this.btn30.Name = "btn30";
+            this.btn30.Size = new System.Drawing.Size(211, 99);
+            this.btn30.TabIndex = 2;
+            this.btn30.Text = "button3";
+            this.btn30.UseVisualStyleBackColor = true;
             // 
-            // btn0015
+            // btn00
             // 
-            this.btn0015.Location = new System.Drawing.Point(3, 3);
-            this.btn0015.Name = "btn0015";
-            this.btn0015.Size = new System.Drawing.Size(211, 96);
-            this.btn0015.TabIndex = 0;
-            this.btn0015.Text = "button1";
-            this.btn0015.UseVisualStyleBackColor = true;
+            this.btn00.Location = new System.Drawing.Point(3, 3);
+            this.btn00.Name = "btn00";
+            this.btn00.Size = new System.Drawing.Size(211, 96);
+            this.btn00.TabIndex = 0;
+            this.btn00.Text = "button1";
+            this.btn00.UseVisualStyleBackColor = true;
             // 
-            // btn1530
+            // btn15
             // 
-            this.btn1530.Location = new System.Drawing.Point(224, 3);
-            this.btn1530.Name = "btn1530";
-            this.btn1530.Size = new System.Drawing.Size(216, 96);
-            this.btn1530.TabIndex = 1;
-            this.btn1530.Text = "button2";
-            this.btn1530.UseVisualStyleBackColor = true;
+            this.btn15.Location = new System.Drawing.Point(224, 3);
+            this.btn15.Name = "btn15";
+            this.btn15.Size = new System.Drawing.Size(216, 96);
+            this.btn15.TabIndex = 1;
+            this.btn15.Text = "button2";
+            this.btn15.UseVisualStyleBackColor = true;
             // 
-            // UC_RendezvousHour
+            // UC_RendezvousHours
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,7 +134,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.Controls.Add(this.tableLayoutPanelRendezvousButtons);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "UC_RendezvousHour";
+            this.Name = "UC_RendezvousHours";
             this.Size = new System.Drawing.Size(468, 330);
             this.Load += new System.EventHandler(this.UC_RendezvousHour_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -150,9 +150,9 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private System.Windows.Forms.ComboBox comboBoxHours;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelRendezvousButtons;
-        private System.Windows.Forms.Button btn4500;
-        private System.Windows.Forms.Button btn3045;
-        private System.Windows.Forms.Button btn0015;
-        private System.Windows.Forms.Button btn1530;
+        private System.Windows.Forms.Button btn45;
+        private System.Windows.Forms.Button btn30;
+        private System.Windows.Forms.Button btn00;
+        private System.Windows.Forms.Button btn15;
     }
 }
