@@ -43,29 +43,33 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.listBoxPatients = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxPatientTRSearch = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageOutputSummary = new System.Windows.Forms.TabPage();
             this.btnOutputSummary = new System.Windows.Forms.Button();
-            this.comboBoxOutputChooseDoctor = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePickerOutputSummary = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxOutputSummaryChooseDoctor = new System.Windows.Forms.ComboBox();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.UC_RendezvousHours1 = new HospitalRendezvousEFCodeFirstWinFormUI.UC_RendezvousHours();
             this.tabControl1.SuspendLayout();
             this.tabPageRendezvousOperation.SuspendLayout();
             this.groupBoxRendezvous.SuspendLayout();
             this.groupBoxService.SuspendLayout();
             this.groupBoxPatient.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPageOutputSummary.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPageRendezvousOperation);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPageOutputSummary);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1735, 735);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPageRendezvousOperation
             // 
@@ -200,41 +204,39 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.textBoxPatientTRSearch.TabIndex = 0;
             this.textBoxPatientTRSearch.TextChanged += new System.EventHandler(this.textBoxPatientTRSearch_TextChanged);
             // 
-            // tabPage2
+            // tabPageOutputSummary
             // 
-            this.tabPage2.Controls.Add(this.btnOutputSummary);
-            this.tabPage2.Controls.Add(this.comboBoxOutputChooseDoctor);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1727, 706);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageOutputSummary.Controls.Add(this.comboBoxOutputSummaryChooseDoctor);
+            this.tabPageOutputSummary.Controls.Add(this.label6);
+            this.tabPageOutputSummary.Controls.Add(this.dateTimePickerOutputSummary);
+            this.tabPageOutputSummary.Controls.Add(this.btnOutputSummary);
+            this.tabPageOutputSummary.Controls.Add(this.label5);
+            this.tabPageOutputSummary.Location = new System.Drawing.Point(4, 25);
+            this.tabPageOutputSummary.Name = "tabPageOutputSummary";
+            this.tabPageOutputSummary.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOutputSummary.Size = new System.Drawing.Size(1727, 706);
+            this.tabPageOutputSummary.TabIndex = 1;
+            this.tabPageOutputSummary.Text = "Doctor Rendezvous Summary Output";
+            this.tabPageOutputSummary.UseVisualStyleBackColor = true;
             // 
             // btnOutputSummary
             // 
-            this.btnOutputSummary.Location = new System.Drawing.Point(432, 110);
+            this.btnOutputSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnOutputSummary.Location = new System.Drawing.Point(442, 216);
             this.btnOutputSummary.Name = "btnOutputSummary";
             this.btnOutputSummary.Size = new System.Drawing.Size(1010, 46);
             this.btnOutputSummary.TabIndex = 2;
-            this.btnOutputSummary.Text = "Output Summary";
+            this.btnOutputSummary.Text = "OUTPUT SUMMARY";
             this.btnOutputSummary.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxOutputChooseDoctor
-            // 
-            this.comboBoxOutputChooseDoctor.Location = new System.Drawing.Point(432, 51);
-            this.comboBoxOutputChooseDoctor.Name = "comboBoxOutputChooseDoctor";
-            this.comboBoxOutputChooseDoctor.Size = new System.Drawing.Size(1010, 22);
-            this.comboBoxOutputChooseDoctor.TabIndex = 1;
+            this.btnOutputSummary.Click += new System.EventHandler(this.btnOutputSummary_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(278, 54);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(220, 82);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(148, 17);
+            this.label5.Size = new System.Drawing.Size(181, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "CHOOSE A DOCTOR:";
             // 
@@ -247,10 +249,43 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.label4.TabIndex = 1;
             this.label4.Text = "Choose a Rendezvous Date:";
             // 
+            // dateTimePickerOutputSummary
+            // 
+            this.dateTimePickerOutputSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePickerOutputSummary.Location = new System.Drawing.Point(442, 133);
+            this.dateTimePickerOutputSummary.Name = "dateTimePickerOutputSummary";
+            this.dateTimePickerOutputSummary.Size = new System.Drawing.Size(1010, 27);
+            this.dateTimePickerOutputSummary.TabIndex = 3;
+            this.dateTimePickerOutputSummary.ValueChanged += new System.EventHandler(this.dateTimePickerOutputSummary_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.Location = new System.Drawing.Point(220, 140);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(153, 20);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "CHOOSE A DATE:";
+            // 
+            // comboBoxOutputSummaryChooseDoctor
+            // 
+            this.comboBoxOutputSummaryChooseDoctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.comboBoxOutputSummaryChooseDoctor.FormattingEnabled = true;
+            this.comboBoxOutputSummaryChooseDoctor.Location = new System.Drawing.Point(442, 79);
+            this.comboBoxOutputSummaryChooseDoctor.Name = "comboBoxOutputSummaryChooseDoctor";
+            this.comboBoxOutputSummaryChooseDoctor.Size = new System.Drawing.Size(1010, 28);
+            this.comboBoxOutputSummaryChooseDoctor.TabIndex = 5;
+            this.comboBoxOutputSummaryChooseDoctor.SelectedIndexChanged += new System.EventHandler(this.comboBoxOutputSummaryChooseDoctor_SelectedIndexChanged);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // UC_RendezvousHours1
             // 
             this.UC_RendezvousHours1.BackColor = System.Drawing.Color.LightCyan;
-            this.UC_RendezvousHours1.IncomingDate = new System.DateTime(2021, 12, 29, 14, 58, 40, 65);
+            this.UC_RendezvousHours1.IncomingDate = new System.DateTime(2021, 12, 30, 9, 22, 9, 999);
             this.UC_RendezvousHours1.IsRendezvousButtonActive = false;
             this.UC_RendezvousHours1.Location = new System.Drawing.Point(38, 93);
             this.UC_RendezvousHours1.myDoctor = null;
@@ -276,8 +311,8 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.groupBoxService.PerformLayout();
             this.groupBoxPatient.ResumeLayout(false);
             this.groupBoxPatient.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPageOutputSummary.ResumeLayout(false);
+            this.tabPageOutputSummary.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,7 +325,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private System.Windows.Forms.GroupBox groupBoxService;
         private System.Windows.Forms.GroupBox groupBoxPatient;
         private System.Windows.Forms.TextBox textBoxPatientTRSearch;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageOutputSummary;
         private System.Windows.Forms.ListBox listBoxPatients;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -302,7 +337,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private UC_RendezvousHours UC_RendezvousHours1;
         private System.Windows.Forms.Button btnBookRendezvous;
         private System.Windows.Forms.Button btnOutputSummary;
-        private System.Windows.Forms.TextBox comboBoxOutputChooseDoctor;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOutputSummary;
+        private System.Windows.Forms.ComboBox comboBoxOutputSummaryChooseDoctor;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

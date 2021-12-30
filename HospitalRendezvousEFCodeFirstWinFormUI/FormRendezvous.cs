@@ -32,6 +32,16 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             //Format dateTimePicker
             ConfigureDateTimePicker(DateTime.Now);
 
+            //for Output summary
+            FillDoctorsToComboBoxOutputSummary();
+
+        }
+
+        private void FillDoctorsToComboBoxOutputSummary()
+        {
+            comboBoxOutputSummaryChooseDoctor.DisplayMember = "DoctorName" + " DoctorSurname";
+            comboBoxOutputSummaryChooseDoctor.ValueMember = "DoctorId";
+            comboBoxOutputSummaryChooseDoctor.DataSource = doctorManager.BringAllActiveDoctors();
         }
 
         private void ConfigureDateTimePicker(DateTime date)
@@ -41,6 +51,12 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             dateTimePickerRendezvousDate.MinDate = DateTime.Now.AddMinutes(-1);
             dateTimePickerRendezvousDate.MaxDate = dateTimePickerRendezvousDate.MinDate.AddDays(15);
             dateTimePickerRendezvousDate.Value = date;
+            ///
+            dateTimePickerOutputSummary.Format = DateTimePickerFormat.Custom;
+            dateTimePickerOutputSummary.CustomFormat = "dd.MM.yyyy";
+            dateTimePickerOutputSummary.MinDate = DateTime.Now;
+            dateTimePickerOutputSummary.MaxDate = dateTimePickerOutputSummary.MinDate.AddDays(15);
+            dateTimePickerOutputSummary.Value = DateTime.Now;
         }
 
         private void FillPatientListBox()
@@ -199,6 +215,157 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
                 {
                     throw new Exception("Unexpected error has occured during rendezvous booking!");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+        }
+
+        private void tabControl1_Click(object sender, EventArgs e)
+        {
+            UC_RendezvousHours1.Clean();
+            PassiveGroupBoxDate();
+            comboBoxService.SelectedIndex = -1;
+            listBoxDoctors.SelectedIndex = -1;
+            PassiveGroupBoxService();
+            listBoxPatients.SelectedIndex = -1;
+            //Cleaning when tabs change
+            btnOutputSummary.Enabled = false;
+            dateTimePickerOutputSummary.Value = DateTime.Now;
+            comboBoxOutputSummaryChooseDoctor.SelectedIndex = -1;
+        }
+
+        private void comboBoxOutputSummaryChooseDoctor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comboBoxOutputSummaryChooseDoctor.SelectedIndex < 0)
+                {
+                    throw new Exception("Please choose a doctor!");
+                }
+                Doctor chosenDoctor = doctorManager.FindDoctorById((int)comboBoxOutputSummaryChooseDoctor.SelectedValue);
+                ConfigureOutPutSummaryButtonState(chosenDoctor, dateTimePickerOutputSummary.Value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+        }
+
+        private void ConfigureOutPutSummaryButtonState(Doctor doctor, DateTime date)
+        {
+            btnOutputSummary.Enabled = false;
+            btnOutputSummary.BackColor = SystemColors.Control;
+            if (doctor != null)
+            {
+                List<RendezvousInfo> rendezvousList = rendezvousManager.BringDoctorRendezvousByDate(doctor, date);
+                if (rendezvousList.Count > 0)
+                {
+                    btnOutputSummary.Enabled = true;
+                    btnOutputSummary.BackColor = Color.Blue;
+                }
+                else
+                {
+                    MessageBox.Show($"{doctor.ToString()} has no rendezvous for date {date.ToString("dd.MM.yyyy")}. Choose a different date!","WARNING", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                }
+            }
+        }
+
+        private void dateTimePickerOutputSummary_ValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxOutputSummaryChooseDoctor.SelectedIndex >= 0)
+            {
+                Doctor chosenDoctor = doctorManager.FindDoctorById((int)comboBoxOutputSummaryChooseDoctor.SelectedValue);
+                ConfigureOutPutSummaryButtonState(chosenDoctor, dateTimePickerOutputSummary.Value);
+            }
+        }
+
+        private void btnOutputSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                printDocument1.Print();
+                btnOutputSummary.BackColor = SystemColors.Control;
+                btnOutputSummary.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR: " + ex.Message);
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            try
+            {
+                Doctor doctor = doctorManager.FindDoctorById((int)comboBoxOutputSummaryChooseDoctor.SelectedValue);
+                Bitmap firstBitmap = Properties.Resources.doktorRandevularResim1;   //DoctorRendezvousPicture1 (Auto generated and it is Turkish :))
+                Image firstImage = firstBitmap;
+
+                Bitmap secondBitmap = Properties.Resources.doktorRandevularResim2;   //DoctorRendezvousPicture1 (Auto generated and it is Turkish :))
+                Image secondImage= secondBitmap;
+
+                e.Graphics.DrawImage(firstImage, 25, 25, firstImage.Width / 10, firstImage.Height / 10);
+                e.Graphics.DrawImage(secondImage, 725, 25, secondImage.Width / 10, secondImage.Height / 10);
+                e.Graphics.DrawString($"Date related rendezvous details\nXX Service - {doctor.ToString()} - {dateTimePickerOutputSummary.Value.ToString("dd-MM-yyyy")}",
+                    new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new Point(25, 100));
+
+                e.Graphics.DrawLine(new Pen(Color.Blue, 2), new Point(25,150), new Point(800,150));
+                e.Graphics.DrawString("Date and Time", new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new Point(50, 200));
+
+                e.Graphics.DrawLine(new Pen(Color.Blue, 22), new Point(25,150), new Point(800,150));
+                e.Graphics.DrawString("Patient Name and Surname", new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new Point(200, 200));
+
+                e.Graphics.DrawLine(new Pen(Color.Blue, 2), new Point(25, 225), new Point(800, 225));
+
+                Point datePosition = new Point(50, 235);
+                Point patientPosition = new Point(200, 235);
+
+                string[] hours = { "09:00", "09:15", "09:30", "09:45","10:00","10:15","10:30","10:45",
+                "11:00","11:15","11:30","11:45", "13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45" };
+
+                RendezvousInfo[] rendezvousInOrder = new RendezvousInfo[hours.Length];
+                List<RendezvousInfo> doctorRendezvous = rendezvousManager.BringDoctorRendezvousByDate(doctor, dateTimePickerOutputSummary.Value);
+                //List<RendezvousInfo> alternativeRendezvousInorder = new List<RendezvousInfo>();
+
+                foreach (RendezvousInfo item in doctorRendezvous)
+                {
+                    for (int i = 0; i < hours.Length; i++)
+                    {
+                        if (hours[i] == item.RendezvousDate.ToString("HH:mm"))
+                        {
+                            rendezvousInOrder[i] = item;
+                        }
+                    }
+                }
+
+                //foreach (RendezvousInfo item in doctorRendezvous)
+                //{
+                //    //for (int i = 0; i < hours.Length; i++)
+                //    //{
+                //    //    if (hours[i] == item.RendezvousDate.ToString("HH:mm"))
+                //    //    {
+                //    //        rendezvousInOrder[i] = item;
+                //    //    }
+                //    //}
+                //}
+
+
+                foreach (RendezvousInfo item in rendezvousInOrder)
+                {
+                    if (item != null)
+                    {
+                        datePosition = new Point(datePosition.X, datePosition.Y + 25);
+
+                        e.Graphics.DrawString($"{item.RendezvousDate.ToString("dd.MM.yyyy")} - {item.RendezvousDate.ToString("HH:mm")}", new Font("Arial", 10, FontStyle.Bold), Brushes.Black, datePosition);
+
+                        patientPosition = new Point(patientPosition.X, patientPosition.Y + 25);
+
+                        e.Graphics.DrawString($"{item.Patient.PatientName} {item.Patient.PatientSurname}", new Font("Arial", 10, FontStyle.Regular), Brushes.Black, patientPosition);
+                    }
+                }
+
             }
             catch (Exception ex)
             {

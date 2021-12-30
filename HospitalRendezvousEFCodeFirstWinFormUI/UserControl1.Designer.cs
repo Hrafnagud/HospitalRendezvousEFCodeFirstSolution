@@ -29,6 +29,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxHours = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.btn30 = new System.Windows.Forms.Button();
             this.btn00 = new System.Windows.Forms.Button();
             this.btn15 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelRendezvousButtons.SuspendLayout();
             this.SuspendLayout();
@@ -126,6 +128,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.btn15.Text = "button2";
             this.btn15.UseVisualStyleBackColor = true;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // UC_RendezvousHours
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -154,5 +160,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private System.Windows.Forms.Button btn30;
         private System.Windows.Forms.Button btn00;
         private System.Windows.Forms.Button btn15;
+        private System.Windows.Forms.Timer timer1;
     }
 }

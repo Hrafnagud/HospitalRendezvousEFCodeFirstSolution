@@ -38,6 +38,8 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             comboBoxHours.SelectedIndex = -1;
             CleanRendezvousButtonsNames();
 
+
+
             foreach (Button item in tableLayoutPanelRendezvousButtons.Controls)
             {
                 item.Click += new EventHandler(btnClick);
@@ -45,6 +47,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
             myDoctor = null;
             ActivePassiveButtonsByBookedRendezvous();
+
+
+            timer1.Interval = 10;
+            timer1.Enabled = true;
         }
 
         private void CleanRendezvousButtonsNames()
@@ -59,6 +65,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         {
             try
             {
+                PassiveButtonsElapsedTimes();
                 if (myDoctor == null)
                 {
                     PassiveRendezvousButtons();
@@ -203,6 +210,39 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             CleanRendezvousButtonsNames();
             PassiveRendezvousButtons();
             IsRendezvousButtonActive = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            PassiveButtonsElapsedTimes();
+        }
+
+        private void PassiveButtonsElapsedTimes()
+        {
+            try
+            {
+                foreach (Button btnItem in tableLayoutPanelRendezvousButtons.Controls)
+                {
+                    int minute = 0;
+                    int hour = 0;
+                    if (btnItem.Text.Length > 4)
+                    {
+                        int.TryParse(btnItem.Text.Substring(3, 2), out minute);
+                        int.TryParse(btnItem.Text.Substring(0, 2), out hour);
+                    }
+
+                    if (IncomingDate.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    {
+                        btnItem.BackColor = Color.DarkGray;
+                        btnItem.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
