@@ -42,6 +42,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
         private void comboBoxDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelPatient.Text = "---";
             if (comboBoxDoctor.SelectedIndex >= 0)
             {
                 chosenDoctor = doctorManager.FindDoctorById((int)comboBoxDoctor.SelectedValue);

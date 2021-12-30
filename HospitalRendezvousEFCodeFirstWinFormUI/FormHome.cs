@@ -24,16 +24,22 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
         private void buttonDoctorOperations_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             FormDoctors formDoctors = new FormDoctors();
             formDoctors.Show();
         }
 
         private void buttonRendezvousOperations_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             FormRendezvous formRendezvous= new FormRendezvous();
             formRendezvous.Show();
+        }
+
+        private void buttonBringPatients_Click(object sender, EventArgs e)
+        {
+            FormCallPatient formCallPatient = new FormCallPatient();
+            formCallPatient.Show();
         }
     }
 }

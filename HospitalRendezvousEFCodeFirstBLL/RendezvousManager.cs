@@ -73,5 +73,31 @@ namespace HospitalRendezvousEFCodeFirstBLL
                 throw ex;
             }
         }
+
+        public RendezvousInfoModel TransactRendezvousToModel(RendezvousInfo rendezvous)
+        {
+            try
+            {
+                RendezvousInfoModel rendezvousView = new RendezvousInfoModel()
+                {
+                    RendezvousId = rendezvous.RendezvousId,
+                    DoctorId = rendezvous.DoctorId,
+                    PatientId = rendezvous.PatientId,
+                    RendezvousDate = rendezvous.RendezvousDate
+                };
+
+                Patient patient = myDBContext.Patients.FirstOrDefault(x => x.PatientId == rendezvous.PatientId);
+                rendezvousView.PatientFullName = patient?.PatientName + " " + patient?.PatientSurname;
+                Doctor doctor = myDBContext.Doctors.FirstOrDefault(x => x.DoctorId == rendezvous.DoctorId);
+                rendezvousView.DoctorFullName = doctor?.DoctorName + " " + doctor?.DoctorSurname;
+                //myService
+                rendezvousView.Service = EnumManager.PassSpecialtyAsTurkishString(rendezvous.Doctor.Specialty);
+                return rendezvousView;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

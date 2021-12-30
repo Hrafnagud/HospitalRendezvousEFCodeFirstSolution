@@ -205,6 +205,8 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
                 if (isBookingConfirmed)
                 {
                     MessageBox.Show($"Rendezvous has been booked successfully", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Rendezvous will be added to list view.
+                    AddRendezvousToListView(newRendezvous);
                     UC_RendezvousHours1.Clean();
                     dateTimePickerRendezvousDate.Value = DateTime.Now;
                     PassiveGroupBoxDate();
@@ -220,6 +222,18 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             {
                 MessageBox.Show("ERROR: " + ex.Message);
             }
+        }
+
+        private void AddRendezvousToListView(RendezvousInfo newRendezvous)
+        {
+            RendezvousInfoModel rendezvous = rendezvousManager.TransactRendezvousToModel(newRendezvous);
+            ListViewItem listViewItem = new ListViewItem();
+            listViewItem.Text = rendezvous.Service;
+            listViewItem.SubItems.Add(rendezvous.DoctorFullName);
+            listViewItem.SubItems.Add(rendezvous.PatientFullName);
+            listViewItem.SubItems.Add(rendezvous.RendezvousDate.ToString("dd.MM.yyyy HH:mm"));
+            listViewItem.Tag = rendezvous;
+            listViewBookedRendezvous.Items.Add(listViewItem);
         }
 
         private void tabControl1_Click(object sender, EventArgs e)
@@ -308,7 +322,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
                 e.Graphics.DrawImage(firstImage, 25, 25, firstImage.Width / 10, firstImage.Height / 10);
                 e.Graphics.DrawImage(secondImage, 725, 25, secondImage.Width / 10, secondImage.Height / 10);
-                e.Graphics.DrawString($"Date related rendezvous details\nXX Service - {doctor.ToString()} - {dateTimePickerOutputSummary.Value.ToString("dd-MM-yyyy")}",
+                e.Graphics.DrawString($"Date related rendezvous details\nService: {EnumManager.PassSpecialtyAsTurkishString(doctor.Specialty)}- {doctor.ToString()} - {dateTimePickerOutputSummary.Value.ToString("dd-MM-yyyy")}",
                     new Font("Arial", 10, FontStyle.Bold), Brushes.Black, new Point(25, 100));
 
                 e.Graphics.DrawLine(new Pen(Color.Blue, 2), new Point(25,150), new Point(800,150));

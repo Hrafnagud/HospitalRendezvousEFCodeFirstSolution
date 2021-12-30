@@ -32,6 +32,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.buttonDoctorOperations = new System.Windows.Forms.Button();
             this.buttonPatientOperations = new System.Windows.Forms.Button();
             this.buttonRendezvousOperations = new System.Windows.Forms.Button();
+            this.buttonBringPatients = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonDoctorOperations
@@ -63,11 +64,22 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.buttonRendezvousOperations.UseVisualStyleBackColor = true;
             this.buttonRendezvousOperations.Click += new System.EventHandler(this.buttonRendezvousOperations_Click);
             // 
+            // buttonBringPatients
+            // 
+            this.buttonBringPatients.Location = new System.Drawing.Point(236, 433);
+            this.buttonBringPatients.Name = "buttonBringPatients";
+            this.buttonBringPatients.Size = new System.Drawing.Size(302, 69);
+            this.buttonBringPatients.TabIndex = 3;
+            this.buttonBringPatients.Text = "BRING PATIENTS FORM";
+            this.buttonBringPatients.UseVisualStyleBackColor = true;
+            this.buttonBringPatients.Click += new System.EventHandler(this.buttonBringPatients_Click);
+            // 
             // FormHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(811, 571);
+            this.Controls.Add(this.buttonBringPatients);
             this.Controls.Add(this.buttonRendezvousOperations);
             this.Controls.Add(this.buttonPatientOperations);
             this.Controls.Add(this.buttonDoctorOperations);
@@ -83,5 +95,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         private System.Windows.Forms.Button buttonDoctorOperations;
         private System.Windows.Forms.Button buttonPatientOperations;
         private System.Windows.Forms.Button buttonRendezvousOperations;
+        private System.Windows.Forms.Button buttonBringPatients;
     }
 }

@@ -233,8 +233,20 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
                     if (IncomingDate.ToShortDateString() == DateTime.Now.ToShortDateString())
                     {
-                        btnItem.BackColor = Color.DarkGray;
-                        btnItem.Enabled = false;
+                        if (hour < DateTime.Now.Hour)
+                        {
+                            btnItem.BackColor = Color.DarkGray;
+                            btnItem.Enabled = false;
+                        }
+                        else if (hour  == DateTime.Now.Hour)
+                        {
+                            if (minute <= DateTime.Now.Minute)
+                            {
+                                btnItem.BackColor = Color.DarkGray;
+                                btnItem.Enabled = false;
+                            }
+                        }
+
                     }
                 }
             }

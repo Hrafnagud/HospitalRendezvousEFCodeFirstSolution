@@ -35,13 +35,13 @@ namespace HospitalRendezvousEFCodeFirstBLL
         {
             try
             {
-                List<Doctor> doctorList = new List<Doctor>();
-                doctorList = myDBContext.Doctors.ToList();
-                return doctorList;
+                //List<Doctor> doctorList = new List<Doctor>();
+                //doctorList = myDBContext.Doctors.ToList();
+                //return doctorList;
 
-                //or
-               //using where clause active doctors will be retrieved.
-                //return myDBContext.Doctors.ToList();
+                // or after adding IsActive
+                //using where clause active doctors will be retrieved.
+                return myDBContext.Doctors.Where(x => x.IsActive).ToList();
 
             }
             catch (Exception ex)

@@ -33,11 +33,20 @@ namespace HopitalRendezvousEFCodeFirstEntities
         [Display(Name = "Salary")]
         public decimal Salary { get; set; }
 
+        //Added after database creation to test update.
+
+        public bool IsActive { get; set; }
+
         public virtual List<RendezvousInfo> RendezvousInfoList { get; set; }
 
         public override string ToString()
         {
             return $"Dr. {DoctorName} {DoctorSurname}";
+        }
+
+        public static implicit operator Doctor(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
