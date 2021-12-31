@@ -18,17 +18,29 @@ namespace HospitalRendezvousEFCodeFirstBLL
             try
             {
                 List<RendezvousInfo> rendezvousList = new List<RendezvousInfo>();
+                List<RendezvousInfo> returnList = new List<RendezvousInfo>();
+
                 rendezvousList = myDBContext.RendezvousInfos.Where(x => x.DoctorId == doctor.DoctorId).ToList();
-                for (int i = 0; i < rendezvousList.Count; i++)
+
+                //First Approach using for
+                //for (int i = 0; i < rendezvousList.Count; i++)
+                //{
+                //    if (rendezvousList[i].RendezvousDate.ToShortDateString() == date.ToShortDateString())
+                //    {
+                //        returnList.Add(rendezvousList[i]);
+                //    }
+                //}
+
+                //Second Approach using foreach
+                foreach (RendezvousInfo item in rendezvousList)
                 {
-                    if (rendezvousList[i].RendezvousDate.ToShortDateString() != date.ToShortDateString())
+                    if (item.RendezvousDate.ToShortDateString() == date.ToShortDateString())
                     {
-                        rendezvousList.Remove(rendezvousList[i]);
+                        returnList.Add(item);
                     }
                 }
 
-
-                return rendezvousList;
+                return returnList;
             }
             catch (Exception ex)
             {

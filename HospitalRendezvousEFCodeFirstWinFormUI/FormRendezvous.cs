@@ -30,10 +30,11 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             PassiveGroupBoxDate();
             FillPatientListBox();
             //Format dateTimePicker
-            ConfigureDateTimePicker(DateTime.Now);
+            ConfigureDateTimePicker();
 
             //for Output summary
             FillDoctorsToComboBoxOutputSummary();
+            comboBoxOutputSummaryChooseDoctor.SelectedIndex = -1;
 
         }
 
@@ -44,13 +45,13 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             comboBoxOutputSummaryChooseDoctor.DataSource = doctorManager.BringAllActiveDoctors();
         }
 
-        private void ConfigureDateTimePicker(DateTime date)
+        private void ConfigureDateTimePicker()
         {
             dateTimePickerRendezvousDate.Format = DateTimePickerFormat.Custom;
             dateTimePickerRendezvousDate.CustomFormat = "dd.MM.yyyy";
             dateTimePickerRendezvousDate.MinDate = DateTime.Now.AddMinutes(-1);
             dateTimePickerRendezvousDate.MaxDate = dateTimePickerRendezvousDate.MinDate.AddDays(15);
-            dateTimePickerRendezvousDate.Value = date;
+            dateTimePickerRendezvousDate.Value = DateTime.Now;
             ///
             dateTimePickerOutputSummary.Format = DateTimePickerFormat.Custom;
             dateTimePickerOutputSummary.CustomFormat = "dd.MM.yyyy";
@@ -103,7 +104,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
                 PassiveGroupBoxService();
                 PassiveGroupBoxDate();
             }
-            ConfigureDateTimePicker(DateTime.Now);
+            ConfigureDateTimePicker();
             UC_RendezvousHours1.Clean();
         }
 
@@ -135,14 +136,14 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
                 listBoxDoctors.DataSource = null;
             }
             listBoxDoctors.SelectedIndex = -1;
-            ConfigureDateTimePicker(DateTime.Now);
+            ConfigureDateTimePicker();
             UC_RendezvousHours1.Clean();
         }
 
         private void listBoxDoctors_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            ConfigureDateTimePicker(DateTime.Now);
+            ConfigureDateTimePicker();
             if (listBoxDoctors.SelectedIndex >= 0)
             {
                 ActivateGroubBoxDate();
@@ -160,7 +161,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
         private void dateTimePickerRendezvousDate_ValueChanged(object sender, EventArgs e)
         {
-            ConfigureDateTimePicker(dateTimePickerRendezvousDate.Value);
             UC_RendezvousHours1.IncomingDate = dateTimePickerRendezvousDate.Value;
             UC_RendezvousHours1.Clean();
         }
@@ -254,12 +254,18 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         {
             try
             {
-                if (comboBoxOutputSummaryChooseDoctor.SelectedIndex < 0)
+                if (comboBoxOutputSummaryChooseDoctor.SelectedIndex >= 0)
                 {
-                    throw new Exception("Please choose a doctor!");
+                    
+                    Doctor chosenDoctor = doctorManager.FindDoctorById((int)comboBoxOutputSummaryChooseDoctor.SelectedValue);
+                    ConfigureOutPutSummaryButtonState(chosenDoctor, dateTimePickerOutputSummary.Value);
                 }
-                Doctor chosenDoctor = doctorManager.FindDoctorById((int)comboBoxOutputSummaryChooseDoctor.SelectedValue);
-                ConfigureOutPutSummaryButtonState(chosenDoctor, dateTimePickerOutputSummary.Value);
+                else
+                {
+                    dateTimePickerOutputSummary.Value = DateTime.Now;
+                    btnOutputSummary.Enabled = false;
+                }
+
             }
             catch (Exception ex)
             {
