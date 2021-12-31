@@ -392,5 +392,10 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
                 MessageBox.Show("ERROR: " + ex.Message);
             }
         }
+
+        private void tabPageOutputSummary_Leave(object sender, EventArgs e)
+        {
+            comboBoxOutputSummaryChooseDoctor.SelectedIndex = -1;
+        }
     }
 }

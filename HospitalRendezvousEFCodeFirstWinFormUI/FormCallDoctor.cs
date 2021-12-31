@@ -22,6 +22,8 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         DoctorManager doctorManager = new DoctorManager();
         RendezvousManager rendezvousManager = new RendezvousManager();
         Doctor chosenDoctor { get; set; }
+        public bool IsFormLoadEnded { get; set; } = false;
+
         private void FormCallDoctor_Load(object sender, EventArgs e)
         {
             BringDoctorsToCombo();
@@ -30,6 +32,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
 
             labelPatient.Text = "--------";
             chosenDoctor = null;
+            IsFormLoadEnded = true;
         }
 
         private void BringDoctorsToCombo()
@@ -46,6 +49,14 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             if (comboBoxDoctor.SelectedIndex >= 0)
             {
                 chosenDoctor = doctorManager.FindDoctorById((int)comboBoxDoctor.SelectedValue);
+            }
+
+            if (rendezvousManager.BringDoctorRendezvousByDate(chosenDoctor, DateTime.Now).Count == 0 && IsFormLoadEnded)
+            {
+                MessageBox.Show($"There are no rendezvous for doctor {chosenDoctor.ToString()}!");
+                timer1.Stop();
+                btnBegin.Enabled = true;
+                btnStop.Enabled = false;
             }
         }
 

@@ -26,20 +26,20 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         {
             //this.Hide();
             FormDoctors formDoctors = new FormDoctors();
-            formDoctors.Show();
+            formDoctors.ShowDialog();
         }
 
         private void buttonRendezvousOperations_Click(object sender, EventArgs e)
         {
             //this.Hide();
             FormRendezvous formRendezvous= new FormRendezvous();
-            formRendezvous.Show();
+            formRendezvous.ShowDialog();
         }
 
         private void buttonBringPatients_Click(object sender, EventArgs e)
         {
             FormCallPatient formCallPatient = new FormCallPatient();
-            formCallPatient.Show();
+            formCallPatient.ShowDialog();
         }
     }
 }

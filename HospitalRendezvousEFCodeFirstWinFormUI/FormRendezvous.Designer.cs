@@ -31,6 +31,11 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageRendezvousOperation = new System.Windows.Forms.TabPage();
+            this.listViewBookedRendezvous = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxRendezvous = new System.Windows.Forms.GroupBox();
             this.btnBookRendezvous = new System.Windows.Forms.Button();
             this.UC_RendezvousHours1 = new HospitalRendezvousEFCodeFirstWinFormUI.UC_RendezvousHours();
@@ -52,11 +57,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.listViewBookedRendezvous = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPageRendezvousOperation.SuspendLayout();
             this.groupBoxRendezvous.SuspendLayout();
@@ -90,6 +90,49 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.tabPageRendezvousOperation.Text = "Rendezvous Operation Page";
             this.tabPageRendezvousOperation.UseVisualStyleBackColor = true;
             // 
+            // listViewBookedRendezvous
+            // 
+            this.listViewBookedRendezvous.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listViewBookedRendezvous.FullRowSelect = true;
+            this.listViewBookedRendezvous.GridLines = true;
+            this.listViewBookedRendezvous.HideSelection = false;
+            this.listViewBookedRendezvous.Location = new System.Drawing.Point(8, 520);
+            this.listViewBookedRendezvous.Name = "listViewBookedRendezvous";
+            this.listViewBookedRendezvous.Size = new System.Drawing.Size(1713, 154);
+            this.listViewBookedRendezvous.TabIndex = 1;
+            this.listViewBookedRendezvous.UseCompatibleStateImageBehavior = false;
+            this.listViewBookedRendezvous.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.DisplayIndex = 1;
+            this.columnHeader1.Text = "Doctor";
+            this.columnHeader1.Width = 120;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.DisplayIndex = 2;
+            this.columnHeader2.Text = "Patient";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.DisplayIndex = 0;
+            this.columnHeader3.Text = "Service";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 80;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Rendezvous Date";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 200;
+            // 
             // groupBoxRendezvous
             // 
             this.groupBoxRendezvous.Controls.Add(this.btnBookRendezvous);
@@ -116,7 +159,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             // UC_RendezvousHours1
             // 
             this.UC_RendezvousHours1.BackColor = System.Drawing.Color.LightCyan;
-            this.UC_RendezvousHours1.IncomingDate = new System.DateTime(2021, 12, 30, 14, 9, 22, 624);
+            this.UC_RendezvousHours1.IncomingDate = new System.DateTime(2021, 12, 31, 9, 26, 25, 39);
             this.UC_RendezvousHours1.IsRendezvousButtonActive = false;
             this.UC_RendezvousHours1.Location = new System.Drawing.Point(38, 93);
             this.UC_RendezvousHours1.myDoctor = null;
@@ -236,6 +279,7 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             this.tabPageOutputSummary.TabIndex = 1;
             this.tabPageOutputSummary.Text = "Doctor Rendezvous Summary Output";
             this.tabPageOutputSummary.UseVisualStyleBackColor = true;
+            this.tabPageOutputSummary.Leave += new System.EventHandler(this.tabPageOutputSummary_Leave);
             // 
             // comboBoxOutputSummaryChooseDoctor
             // 
@@ -299,49 +343,6 @@ namespace HospitalRendezvousEFCodeFirstWinFormUI
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
-            // listViewBookedRendezvous
-            // 
-            this.listViewBookedRendezvous.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listViewBookedRendezvous.FullRowSelect = true;
-            this.listViewBookedRendezvous.GridLines = true;
-            this.listViewBookedRendezvous.HideSelection = false;
-            this.listViewBookedRendezvous.Location = new System.Drawing.Point(8, 520);
-            this.listViewBookedRendezvous.Name = "listViewBookedRendezvous";
-            this.listViewBookedRendezvous.Size = new System.Drawing.Size(1713, 154);
-            this.listViewBookedRendezvous.TabIndex = 1;
-            this.listViewBookedRendezvous.UseCompatibleStateImageBehavior = false;
-            this.listViewBookedRendezvous.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.DisplayIndex = 1;
-            this.columnHeader1.Text = "Doctor";
-            this.columnHeader1.Width = 120;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.DisplayIndex = 2;
-            this.columnHeader2.Text = "Patient";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 120;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.DisplayIndex = 0;
-            this.columnHeader3.Text = "Service";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 80;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Rendezvous Date";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 200;
             // 
             // FormRendezvous
             // 
